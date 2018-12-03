@@ -6,6 +6,7 @@ const express      = require('express');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const cors         = require("cors");
 
 
 mongoose
@@ -25,6 +26,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Allow Cross-Origin Resource Sharing (CORS)
+// (allows access to the API from the frontend JS on a different domain/origin)
+app.use(cors({
+  // allow other domains/origins to send cookies
+  credentials: true,
+  // the array of domains/origins we want cookies from (just the React app)
+  origin: [ "http://localhost:3000" ]
+}));
 
 
 const phoneRouter = require("./routes/phone-router.js");
