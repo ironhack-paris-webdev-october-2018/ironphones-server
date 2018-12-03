@@ -27,4 +27,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+const phoneRouter = require("./routes/phone-router.js");
+// "/api" means all the the routes in phone-router.js will start with "/api"
+app.use("/api", phoneRouter);
+
+
 module.exports = app;
