@@ -57,5 +57,8 @@ app.use("/api", phoneRouter);
 const authRouter = require("./routes/auth-router.js");
 app.use("/api", authRouter);
 
+const fileRouter = require("./routes/file-router.js");
+app.use("/api", fileRouter);
+
 
 module.exports = app;
