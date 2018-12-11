@@ -15,7 +15,7 @@ require("./config/passport-setup.js");
 
 
 mongoose
-  .connect('mongodb://localhost/ironphones-server', {useNewUrlParser: true})
+  .connect(process.env.MONGODB_URI, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -41,7 +41,7 @@ app.use(cors({
   origin: [ "http://localhost:3000" ]
 }));
 app.use(session({
-  secret: "y$NmzX8e7K279/h](jdNhyjahxQ2wnq*#Lznn9B(Vr",
+  secret: process.env.SESSION_SECRET,
   resave: true,
   saveUninitialized: true,
   store: new MongoStore({ mongooseConnection: mongoose.connection }),
